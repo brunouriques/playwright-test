@@ -1,0 +1,40 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://www.saucedemo.com/');
+  await page.locator('[data-test="username"]').click();
+  await page.locator('[data-test="username"]').fill('teste');
+  await page.locator('[data-test="username"]').press('Tab');
+  await page.locator('[data-test="password"]').fill('senha');
+  await page.locator('[data-test="login-button"]').click();
+  await expect(page.locator('[data-test="error"]')).toContainText('Epic sadface: Username and password do not match any user in this service');
+  await page.locator('[data-test="error-button"]').click();
+  await expect(page.locator('.error-message-container')).toBeVisible();
+  await page.locator('[data-test="username"]').click();
+  await page.locator('[data-test="username"]').fill('standard_user');
+  await page.locator('[data-test="username"]').press('Tab');
+  await page.locator('[data-test="password"]'
+  await page.locator('[data-test="remove-sauce-labs-fleece-jacket"]').click();
+  await page.locator('[data-test="continue-shopping"]').click();
+  await page.locator('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
+  await page.locator('[data-test="shopping-cart-link"]').click();
+  await expect(page.locator('[data-test="inventory-item-name"]')).toContainText('Sauce Labs Bike Light');
+  await expect(page.locator('[data-test="inventory-item-desc"]')).toContainText('A red light isn\'t the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included.');
+  await page.locator('[data-test="checkout"]').click();
+  await page.locator('[data-test="firstName"]').click();
+  await page.locator('[data-test="firstName"]').fill('Teste');
+  await page.locator('[data-test="firstName"]').press('Tab');
+  await page.locator('[data-test="lastName"]').fill('1234');
+  await page.locator('[data-test="lastName"]').press('Tab');
+  await page.locator('[data-test="postalCode"]').fill('88765123');
+  await page.locator('[data-test="continue"]').click();
+  await expect(page.locator('[data-test="subtotal-label"]')).toContainText('Item total: $9.99');
+  await page.locator('[data-test="finish"]').click();
+  await page.locator('[data-test="back-to-products"]').click();
+  await page.getByRole('button', { name: 'Open Menu' }).click();
+  await page.locator('[data-test="logout-sidebar-link"]').click();
+  await page.locator('[data-test="login-button"]').click();
+  await page.locator('[data-test="item-5-title-link"]').click();
+  await page.locator('[data-test="add-to-cart"]').click();
+  await page.locator('[data-test="shopping-cart-link"]').click();
+});
